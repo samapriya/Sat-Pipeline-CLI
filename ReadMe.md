@@ -21,18 +21,20 @@ The project will allow for the service to be a seamless pull, parse and push ser
 * [Installation](#installation)
 * [Prerequisites](#prerequisites)
 * [Getting started](#getting-started)
+	* [GeoObject to JSON](#geoobject-to-json)
     * [CLI Main Tool](#cli-main-tool)
     * [JSON Parse and Asset Download](#json-parse-and-asset-download)
     * [Metadata Parse Tool](#metadata-parse-tool)
 * [Usage examples](#usage-examples)
     * [Choosing the Main tool](#choosing-the-main-tool)
+	* [Converting to Structured JSON](#converting-to-structured-json)
 	* [Creating JSON and Download Assets](#creating-json-and-download-assets)
 	* [Metadata Parse](#metadata-parse)
 	* [Upload to GEE](#upload-to-gee)
 * [Credits](#credits)
 
 ## Installation
-For now the tools can only be run on a linux distribution and has been developed on Ubuntu 16 LTS. Download the respository along with all folders and navigate to folder for specific application
+This tool can be run on both windows and linux distributions.
 
 
 ## Prerequisites
@@ -66,7 +68,7 @@ In the download.py file edit the line with your Planet API Key and save[1].You c
 	2) pip install -r requirements.txt
 ```
 
-Command Line Interfaces are extremely useful since they can be created to be platform independent and they provide a short hand method to autmate scripts and more concise and powerful means to control a program or operating systems.
+Command Line Interfaces are extremely useful since they can be created to be platform independent and they provide a short hand method to automate scripts and more concise and powerful means to control a program or operating systems.
 There are three different tools and they are made to interact with each other working on both linux as well as windows systems. They are created in python and not bash and hence platform independent for as logn as dependencies are fulfilled.
 
 ## Getting started
@@ -112,6 +114,26 @@ optional arguments:
 
 ```
 
+## GeoObject to JSON
+This tool can be used to convert from kml(google earth file)/shapefile(ESRI) or geojson file from geojson.io to structured aoi.json used for querying planet datasets using API 1.0. The output is a file aoi.json which can then be used to query and download using cli_jsonparse tool.
+
+```
+usage: cli_aoi2json.pyc [-h] [--start START] [--end END] [--cloud CLOUD]
+                        [--inputfile INPUTFILE] [--geo GEO]
+
+Tool to convert KML, Shapefile or GeoJSON file to AreaOfInterest.JSON file
+with structured query for use with Planet API 1.0
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --start START         Start date in YYYY-MM-DD?
+  --end END             End date in YYYY-MM-DD?
+  --cloud CLOUD         Maximum Cloud Cover(0-1) representing 0-100
+  --inputfile INPUTFILE
+                        Choose a kml/shapefile or geojson file for
+                        AOI(KML/SHP/GJSON
+  --geo GEO             map.geojson/aoi.kml/aoi.shp file
+```
 ## JSON Parse and Asset Download
 JSON Parse and asset download tool can be used as a stand alone tool to create image filters and download PlanetScope and RapidEye datasets.
 
@@ -160,6 +182,18 @@ python cli_toolsout.pyc --tool PM --metadataparse "python cli_metadata.pyc --ass
 To upload to Google Earth Engine
 python cli_toolsout.pyc --tool UP --gee "python geebam.py upload -u johndoe@gmail.com --source path_to_directory_with_tif -m path_to_metadata.csv --dest users/johndoe/myfolder/mycollection --nodata 222"
 ```
+
+## Converting to Structured JSON
+This tool can be used to convert between multiple file formats to a structured json which is accepted by Planet API. It can read Google Earth kml files, ESRI shapefiles as well as geojson files downloaded from map.geojson. For use of use, it is better to use a bounding box to encompass area of interest, multivertex polygon to JSON don't always go well when querying using such complex json structures.
+
+```
+For KML Files
+python cli_aoi2json.pyc --start 2017-01-01 --end 2017-04-02 --cloud 0.15 --inputfile KML --geo "./lybbox.kml"
+
+For ESRI ShapeFiles
+python cli_aoi2json.pyc --start 2017-01-01 --end 2017-04-02 --cloud 0.15 --inputfile SHP --geo "./lybbox.shp"
+```
+
 ## Creating JSON and Download Assets
 This can be used as a standalone to format JSON to query assets from Planet API
 
