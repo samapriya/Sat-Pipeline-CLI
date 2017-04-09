@@ -38,7 +38,7 @@ This tool can be run on both windows and linux distributions.
 
 
 ## Prerequisites
-It assumes you use Python2.7 hopefully >=2.7.12 and that you have earth engine python API installed on your system. Instructions can be found [here] (https://developers.google.com/earth-engine/python_install)
+It assumes you use Python2.7 hopefully >=2.7.12 and that you have earth engine python API installed on your system. Instructions can be found [here](https://developers.google.com/earth-engine/python_install)
 In the download.py file edit the line with your Planet API Key and save[1].You can install all python dependencies by simply running[2]
 
 ```
