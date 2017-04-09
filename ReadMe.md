@@ -38,29 +38,7 @@ This tool can be run on both windows and linux distributions.
 
 
 ## Prerequisites
-It assumes you use Python2.7 hopefully >=2.7.12
-
-Install the following
-
-  * sudo apt-get install ssmtp
-
-  * sudo apt-get install sendemail libio-socket-ssl-perl libnet-ssleay-perl
-
-  * sudo apt-get install zip
-  
-  * pip install planet, pandas
-  
-for Earth Engine (https://developers.google.com/earth-engine/python_install)
-
-  * sudo pip install google-api-python-client
-  
-  * sudo pip install earthengine-api
-
-  * type earthengine authenticate and a browser will open up asking you to login to google account(This should be the same gmail account
-  used to send metadata email)
-
-Copy the Key and paste back to bash/command line
-
+It assumes you use Python2.7 hopefully >=2.7.12 and that you have earth engine python API installed on your system. Instructions can be found [here] (https://developers.google.com/earth-engine/python_install)
 In the download.py file edit the line with your Planet API Key and save[1].You can install all python dependencies by simply running[2]
 
 ```
