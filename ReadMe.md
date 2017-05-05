@@ -1,4 +1,7 @@
 # Sat-Pipeline CLI
+
+[![DOI](https://zenodo.org/badge/86750694.svg)](https://zenodo.org/badge/latestdoi/86750694)
+
 This project supports Planet assets such as PlanetScope and RapidEye imagery along with Digital globe assets including Quickbird, GeoEye, WorldView-2 and WorldView-3 using associated metadata files. 
 
 Planet Inc is a company that is currently trying to map the entire planet every single day and as the constellation size increases the data value and repeat cycle increases as well.(https://www.planet.com/) The planet labs API consists of searching for satellite imagery type assets using a structured geojson
